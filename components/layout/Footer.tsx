@@ -3,10 +3,16 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+interface FooterLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
+  const footerLinks: Record<string, FooterLink[]> = {
     "À Propos": [
       { label: "Notre Histoire", href: "/univers" },
       { label: "La Box", href: "/la-box" },

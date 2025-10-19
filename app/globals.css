@@ -132,3 +132,13 @@ a, button {
   background: var(--color-terracotta);
   color: white;
 }
+
+/* Buttons - Minimal style */
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

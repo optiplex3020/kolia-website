@@ -20,7 +20,7 @@ export default function FeaturedBox() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-square bg-gradient-to-br from-[var(--color-beige)] to-[var(--color-stone)] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="aspect-square bg-gradient-to-br from-[var(--color-beige)] to-[var(--color-stone)] rounded-2xl overflow-hidden ">
               {/* Placeholder for box image */}
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center p-8">
@@ -99,18 +99,18 @@ export default function FeaturedBox() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/sabonner">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-base font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-lg"
+                  
+                  
+                  className="px-8 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-base font-medium hover:bg-[var(--color-ochre)] transition-all duration-200 "
                 >
                   Recevoir cette box
                 </motion.button>
               </Link>
               <Link href="/la-box">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-transparent border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-base font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-colors"
+                  
+                  
+                  className="px-8 py-4 bg-transparent border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-base font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-all duration-200"
                 >
                   En savoir plus
                 </motion.button>

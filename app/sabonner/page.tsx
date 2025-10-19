@@ -91,7 +91,7 @@ export default function SabonnerPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-flex items-center gap-4 bg-white p-2 rounded-full shadow-lg"
+              className="inline-flex items-center gap-4 bg-white p-2 rounded-full "
             >
               <button
                 onClick={() => setBillingPeriod("monthly")}
@@ -131,14 +131,14 @@ export default function SabonnerPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative bg-white rounded-3xl p-8 shadow-xl ${
+                className={`relative bg-white rounded-3xl p-8  ${
                   plan.popular ? "ring-4 ring-[var(--color-terracotta)] scale-105" : ""
                 }`}
               >
                 {/* Popular Badge */}
                 {plan.badge && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-[var(--color-terracotta)] text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                    <span className="bg-[var(--color-terracotta)] text-white px-4 py-2 rounded-full text-sm font-medium ">
                       {plan.badge}
                     </span>
                   </div>
@@ -169,9 +169,9 @@ export default function SabonnerPage() {
 
                   {/* CTA Button */}
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-full px-6 py-4 rounded-full text-base font-medium transition-colors shadow-lg ${
+                    
+                    
+                    className={`w-full px-6 py-4 rounded-full text-base font-medium transition-all duration-200  ${
                       plan.popular
                         ? "bg-[var(--color-terracotta)] text-white hover:bg-[var(--color-ochre)]"
                         : "bg-[var(--color-sand)] text-[var(--color-text-primary)] hover:bg-[var(--color-beige)]"
@@ -306,7 +306,7 @@ export default function SabonnerPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-2xl shadow-md"
+                className="bg-white p-6 rounded-2xl"
               >
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-3">
                   {faq.question}
@@ -335,10 +335,10 @@ export default function SabonnerPage() {
               authenticité et modernité.
             </p>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              
+              
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-colors shadow-xl"
+              className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-all duration-200 "
             >
               Choisir ma formule
             </motion.button>

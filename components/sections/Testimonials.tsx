@@ -58,7 +58,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-[var(--color-sand)] p-8 rounded-2xl hover:shadow-xl transition-shadow duration-300"
+              className="bg-[var(--color-sand)] p-8 rounded-2xl hover: transition-shadow duration-300"
             >
               {/* Quote Icon */}
               <div className="text-[var(--color-terracotta)] text-5xl mb-4 leading-none">"</div>

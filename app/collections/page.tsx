@@ -81,7 +81,7 @@ export default function CollectionsPage() {
                 className="group relative"
               >
                 <Link href={`/collections/${collection.id}`}>
-                  <div className="relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div className="relative overflow-hidden rounded-3xl  hover: transition-all duration-300">
                     {/* Background Gradient */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${collection.color} opacity-90 group-hover:opacity-100 transition-opacity`}
@@ -90,7 +90,7 @@ export default function CollectionsPage() {
                     {/* Status Badge */}
                     {collection.status === "Actuel" && (
                       <div className="absolute top-6 right-6 z-10">
-                        <span className="bg-white text-[var(--color-terracotta)] px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                        <span className="bg-white text-[var(--color-terracotta)] px-4 py-2 rounded-full text-sm font-medium ">
                           Box actuelle
                         </span>
                       </div>
@@ -130,7 +130,7 @@ export default function CollectionsPage() {
                     </div>
 
                     {/* Hover Effect Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-200" />
                   </div>
                 </Link>
               </motion.div>
@@ -167,7 +167,7 @@ export default function CollectionsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-white p-6 rounded-2xl shadow-md"
+                  className="bg-white p-6 rounded-2xl"
                 >
                   <p className="text-[var(--color-terracotta)] font-medium mb-2">
                     {preview.month} 2025
@@ -182,9 +182,9 @@ export default function CollectionsPage() {
 
             <Link href="/sabonner">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-lg font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-lg"
+                
+                
+                className="px-10 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-lg font-medium hover:bg-[var(--color-ochre)] transition-all duration-200 "
               >
                 S'abonner maintenant
               </motion.button>

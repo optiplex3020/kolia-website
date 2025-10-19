@@ -62,25 +62,17 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           >
             <Link href="/sabonner">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-base font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-lg"
-              >
+              <button className="px-8 py-3 bg-[var(--color-terracotta)] text-white rounded-full text-[15px] font-medium hover:bg-[var(--color-ochre)] transition-all duration-200">
                 Découvrir l'expérience
-              </motion.button>
+              </button>
             </Link>
             <Link href="/la-box">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-transparent border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-base font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-colors"
-              >
+              <button className="px-8 py-3 bg-transparent border border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-[15px] font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-all duration-200">
                 Voir la box du mois
-              </motion.button>
+              </button>
             </Link>
           </motion.div>
         </motion.div>

@@ -36,9 +36,9 @@ export default function LaBoxPage() {
               </p>
               <Link href="/sabonner">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-base font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-lg"
+                  
+                  
+                  className="px-8 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-base font-medium hover:bg-[var(--color-ochre)] transition-all duration-200 "
                 >
                   Recevoir cette box - 39,99€
                 </motion.button>
@@ -52,7 +52,7 @@ export default function LaBoxPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="aspect-square bg-gradient-to-br from-[var(--color-beige)] to-[var(--color-stone)] rounded-3xl shadow-2xl overflow-hidden">
+              <div className="aspect-square bg-gradient-to-br from-[var(--color-beige)] to-[var(--color-stone)] rounded-3xl  overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center p-8">
                   <div className="text-center">
                     <div className="text-8xl mb-4">📦</div>
@@ -205,7 +205,7 @@ export default function LaBoxPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white p-8 rounded-2xl  hover: transition-shadow"
               >
                 <h3 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-3">
                   {recipe.name}
@@ -269,7 +269,7 @@ export default function LaBoxPage() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-square bg-gradient-to-br from-[var(--color-sand)] to-[var(--color-beige)] rounded-3xl shadow-xl overflow-hidden">
+              <div className="aspect-square bg-gradient-to-br from-[var(--color-sand)] to-[var(--color-beige)] rounded-3xl  overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center p-8">
                   <div className="text-center">
                     <div className="text-6xl mb-4">🎁</div>
@@ -303,18 +303,18 @@ export default function LaBoxPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/sabonner">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-colors shadow-xl"
+                  
+                  
+                  className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-all duration-200 "
                 >
                   Choisir ma formule
                 </motion.button>
               </Link>
               <Link href="/collections">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-medium hover:bg-white/10 transition-colors"
+                  
+                  
+                  className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-200"
                 >
                   Voir les collections passées
                 </motion.button>

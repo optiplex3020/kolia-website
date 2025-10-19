@@ -124,7 +124,7 @@ export default function UniversPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white p-8 rounded-2xl  hover: transition-shadow"
               >
                 <div className="w-12 h-1 bg-[var(--color-terracotta)] mb-6" />
                 <h3 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
@@ -224,9 +224,9 @@ export default function UniversPage() {
             </p>
             <Link href="/sabonner">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-colors shadow-xl"
+                
+                
+                className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-all duration-200 "
               >
                 Découvrir les formules
               </motion.button>

@@ -75,13 +75,9 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center">
             <Link href="/sabonner">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-[var(--color-terracotta)] text-white rounded-full text-[15px] font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-md"
-              >
+              <button className="px-6 py-2.5 bg-[var(--color-terracotta)] text-white rounded-full text-[15px] font-medium hover:bg-[var(--color-ochre)] transition-all duration-200">
                 S'abonner
-              </motion.button>
+              </button>
             </Link>
           </div>
 
@@ -142,7 +138,7 @@ export default function Header() {
                   className="pt-4 px-4"
                 >
                   <Link href="/sabonner" onClick={() => setIsMobileMenuOpen(false)}>
-                    <button className="w-full px-6 py-3 bg-[var(--color-terracotta)] text-white rounded-full text-[15px] font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-md">
+                    <button className="w-full px-6 py-3 bg-[var(--color-terracotta)] text-white rounded-full text-[15px] font-medium hover:bg-[var(--color-ochre)] transition-all duration-200">
                       S'abonner
                     </button>
                   </Link>

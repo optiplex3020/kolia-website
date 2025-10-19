@@ -124,7 +124,7 @@ export default function JournalPage() {
             transition={{ duration: 0.8 }}
           >
             <Link href={`/journal/${articles[0].id}`}>
-              <div className="group relative bg-gradient-to-br from-[var(--color-terracotta)] to-[var(--color-ochre)] rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all">
+              <div className="group relative bg-gradient-to-br from-[var(--color-terracotta)] to-[var(--color-ochre)] rounded-3xl overflow-hidden  hover:shadow-3xl transition-all">
                 <div className="p-12 md:p-16 flex items-center justify-center min-h-[400px]">
                   <div className="max-w-3xl text-center text-white">
                     <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
@@ -162,7 +162,7 @@ export default function JournalPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/journal/${article.id}`}>
-                  <div className="group bg-[var(--color-sand)] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
+                  <div className="group bg-[var(--color-sand)] rounded-2xl overflow-hidden  hover: transition-all h-full flex flex-col">
                     {/* Image Placeholder */}
                     <div className="aspect-video bg-gradient-to-br from-[var(--color-beige)] to-[var(--color-stone)] flex items-center justify-center">
                       <span className="text-6xl">{article.image}</span>
@@ -173,7 +173,7 @@ export default function JournalPage() {
                       <span className="inline-block text-[var(--color-terracotta)] text-sm font-medium mb-3">
                         {article.category}
                       </span>
-                      <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-3 group-hover:text-[var(--color-terracotta)] transition-colors">
+                      <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-3 group-hover:text-[var(--color-terracotta)] transition-all duration-200">
                         {article.title}
                       </h3>
                       <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4 flex-1">
@@ -216,10 +216,10 @@ export default function JournalPage() {
                 className="flex-1 px-6 py-4 rounded-full bg-white text-[var(--color-text-primary)] placeholder:text-[var(--color-text-light)] focus:outline-none focus:ring-2 focus:ring-white/50"
               />
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                
+                
                 type="submit"
-                className="px-8 py-4 bg-[var(--color-text-primary)] text-white rounded-full text-base font-medium hover:bg-[var(--color-text-secondary)] transition-colors shadow-lg"
+                className="px-8 py-4 bg-[var(--color-text-primary)] text-white rounded-full text-base font-medium hover:bg-[var(--color-text-secondary)] transition-all duration-200 "
               >
                 S'inscrire
               </motion.button>

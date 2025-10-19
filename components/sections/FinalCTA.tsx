@@ -33,7 +33,7 @@ export default function FinalCTA() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-block bg-white p-6 rounded-2xl shadow-lg mb-10"
+            className="inline-block bg-white p-6 rounded-2xl  mb-10"
           >
             <p className="text-sm text-[var(--color-text-secondary)] mb-2">À partir de</p>
             <div className="flex items-baseline justify-center gap-2">
@@ -54,18 +54,18 @@ export default function FinalCTA() {
           >
             <Link href="/sabonner">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-lg font-medium hover:bg-[var(--color-ochre)] transition-colors shadow-xl"
+                
+                
+                className="px-10 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-lg font-medium hover:bg-[var(--color-ochre)] transition-all duration-200 "
               >
                 Commencer l'expérience
               </motion.button>
             </Link>
             <Link href="/univers">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-transparent border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-lg font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-colors"
+                
+                
+                className="px-10 py-4 bg-transparent border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-lg font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-all duration-200"
               >
                 En savoir plus
               </motion.button>

@@ -11,7 +11,7 @@ interface FooterLink {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
+ 
   const footerLinks: Record<string, FooterLink[]> = {
     "À Propos": [
       { label: "Notre Histoire", href: "/univers" },

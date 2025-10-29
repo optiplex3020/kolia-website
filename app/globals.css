@@ -2,26 +2,35 @@
 
 /* KOLIA Design System */
 :root {
-  /* Base colors - Neutral palette */
-  --color-sand: #F5F1EB;
-  --color-beige: #E8DFD3;
-  --color-stone: #D4C5B0;
-  --color-taupe: #9B8B7E;
+  /* Palette Kolia */
+  --color-vert-kolia: #0d2f20;
+  --color-ivoire: #f2f1ed;
+  --color-rouge-brique: #944e34;
+  --color-bronze: #a6937d;
+  --color-beige-sable: #c8b99c;
 
-  /* Accent colors */
-  --color-terracotta: #C97456;
-  --color-ochre: #D4A373;
-  --color-indigo: #4A5B7C;
-  --color-olive: #7A8450;
+  /* Semantic mapping */
+  --color-background: var(--color-ivoire);
+  --color-surface: #e9e7e1;
+  --color-text-primary: var(--color-vert-kolia);
+  --color-text-secondary: #3f564a;
+  --color-text-muted: #6e756d;
+  --color-separator: rgba(13, 47, 32, 0.12);
 
-  /* Text colors */
-  --color-text-primary: #2C2520;
-  --color-text-secondary: #6B5D52;
-  --color-text-light: #9B8B7E;
+  /* Legacy aliases (phase de transition) */
+  --color-sand: var(--color-ivoire);
+  --color-beige: #e3dfd6;
+  --color-stone: #d8d2c8;
+  --color-taupe: #8c8178;
+  --color-terracotta: var(--color-rouge-brique);
+  --color-ochre: var(--color-bronze);
+  --color-text-light: var(--color-text-muted);
 
-  /* Background */
-  --color-background: #FDFCFA;
-  --color-background-alt: #F5F1EB;
+  /* Motion */
+  --transition-fast: 320ms cubic-bezier(0.33, 1, 0.68, 1);
+  --transition-base: 620ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --transition-slow: 900ms cubic-bezier(0.22, 0.55, 0.1, 1);
+  --transition-lento: 1200ms cubic-bezier(0.22, 0.55, 0.1, 1);
 
   /* Typography scale */
   --font-size-xs: 0.75rem;    /* 12px */
@@ -44,31 +53,19 @@
   --spacing-2xl: 4rem;        /* 64px */
   --spacing-3xl: 6rem;        /* 96px */
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-
   /* Border radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.35rem;
+  --radius-lg: 0.75rem;
   --radius-full: 9999px;
 }
 
 @theme inline {
-  /* Map custom properties to Tailwind */
-  --color-sand: #F5F1EB;
-  --color-beige: #E8DFD3;
-  --color-stone: #D4C5B0;
-  --color-taupe: #9B8B7E;
-  --color-terracotta: #C97456;
-  --color-ochre: #D4A373;
-  --color-indigo: #4A5B7C;
-  --color-olive: #7A8450;
-  --color-text: #2C2520;
-  --color-text-secondary: #6B5D52;
-  --color-background: #FDFCFA;
+  /* Tailwind mapping */
+  --color-background: #f2f1ed;
+  --color-text: #0d2f20;
+  --color-muted: #6e756d;
+  --spacing-none: 0;
 }
 
 * {
@@ -84,29 +81,61 @@ html {
 }
 
 body {
+  position: relative;
   background: var(--color-background);
   color: var(--color-text-primary);
-  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans, system-ui), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: var(--font-size-base);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
+/* Background texture disabled by default to avoid black overlays */
+html.has-animations.animate-in body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.5), transparent 45%), radial-gradient(circle at 80% 10%, rgba(148, 78, 52, 0.07), transparent 55%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='f' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23f)' opacity='0.18'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+  transition: opacity var(--transition-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-animations body::before {
+    opacity: 0.35;
+    animation: none;
+  }
+}
+
 /* Typography base styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-crimson), Georgia, serif;
+  font-family: var(--font-display, Georgia), 'Times New Roman', serif;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
   color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+/* Only animate headings when animations are enabled */
+html.has-animations h1, html.has-animations h2, html.has-animations h3, html.has-animations h4, html.has-animations h5, html.has-animations h6 {
+  animation: heading-reveal var(--transition-lento) ease-out both;
 }
 
 p {
   margin-bottom: 1rem;
+  font-feature-settings: "liga" 1, "kern" 1;
+  letter-spacing: 0.015em;
+  color: var(--color-text-secondary);
 }
 
 /* Smooth transitions for interactive elements */
 a, button {
-  transition: all var(--transition-base);
+  transition: color var(--transition-base), background-color var(--transition-base), border-color var(--transition-base), opacity var(--transition-base), transform var(--transition-base);
+  letter-spacing: 0.04em;
 }
 
 /* Custom scrollbar */
@@ -115,30 +144,112 @@ a, button {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-sand);
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-taupe);
+  background: var(--color-bronze);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-terracotta);
+  background: var(--color-rouge-brique);
 }
 
 /* Selection color */
 ::selection {
-  background: var(--color-terracotta);
-  color: white;
+  background: rgba(148, 78, 52, 0.18);
+  color: var(--color-text-primary);
 }
 
 /* Buttons - Minimal style */
 button {
   cursor: pointer;
+  border-radius: var(--radius-full);
 }
 
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.page-fade {
+  /* Fallback visible by default */
+  opacity: 1;
+}
+
+html.has-animations.animate-in .page-fade {
+  opacity: 0;
+  animation: page-fade-in var(--transition-lento) ease-out forwards;
+}
+
+.slow-reveal {
+  /* Fallback visible by default */
+  opacity: 1;
+  transform: none;
+}
+
+html.has-animations.animate-in .slow-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: slow-reveal-in var(--transition-slow) ease-out forwards;
+}
+
+html.has-animations.animate-in .slow-reveal:nth-of-type(2) {
+  animation-delay: 140ms;
+}
+
+html.has-animations.animate-in .slow-reveal:nth-of-type(3) {
+  animation-delay: 220ms;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slow-reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heading-reveal {
+  0% {
+    letter-spacing: 0.25em;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  45% {
+    opacity: 0.9;
+  }
+  100% {
+    letter-spacing: 0.08em;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::before {
+    opacity: 0.3;
+  }
 }

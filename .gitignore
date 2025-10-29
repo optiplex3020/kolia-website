@@ -17,6 +17,7 @@ README.md
 DEPLOYMENT.md
 PROJECT_SUMMARY.md
 *.md
+*.pdf
 # next.js
 /.next/
 /out/

@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Crimson_Pro } from "next/font/google";
+import { Work_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AnimationClassSetter from "@/components/AnimationClassSetter";
 
-// Sans-serif font for body text
-const inter = Inter({
-  variable: "--font-inter",
+// Sans-serif interface fallback (Monument Grotesk alternative)
+const workSans = Work_Sans({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-sans",
 });
 
-// Serif font for headings
-const crimsonPro = Crimson_Pro({
-  variable: "--font-crimson",
+// Serif display fallback (Romie alternative)
+const playfair = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -51,8 +52,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${crimsonPro.variable}`}>
-      <body className="antialiased">
+    <html lang="fr" className={`${workSans.variable} ${playfair.variable}`}>
+      <body className="antialiased page-fade">
+        <AnimationClassSetter />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

@@ -1,111 +1,48 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image/Video Placeholder */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-background)]/40 to-[var(--color-background)] z-10" />
-        {/* Placeholder for hero image - replace with actual image */}
-        <div className="w-full h-full bg-gradient-to-br from-[var(--color-sand)] via-[var(--color-beige)] to-[var(--color-stone)]" />
+    <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden px-6 py-24 sm:px-10">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,var(--color-surface)_0%,transparent_60%)] opacity-70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,var(--color-rouge-brique)_0%,transparent_70%)] opacity-15" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-[var(--color-text-secondary)] uppercase tracking-widest text-sm mb-6"
-          >
-            Maison Sensorielle Culinaire
-          </motion.p>
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
+        <p className="slow-reveal text-xs uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
+          Rituel Kolia · Édition limitée
+        </p>
 
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-[var(--color-text-primary)] mb-8 leading-tight"
-          >
-            Kolia n'est ni fast,
-            <br />
-            ni last.
-            <br />
-            <span className="text-[var(--color-terracotta)]">
-              Kolia est au centre du bon.
-            </span>
-          </motion.h1>
+        <h1 className="slow-reveal mt-8 text-5xl font-medium leading-tight sm:text-6xl">
+          Goûter le silence. Garder la mémoire.
+        </h1>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Une expérience gastronomique mensuelle qui réinvente les cultures africaines et
-            diasporiques. Un rituel, une collection, un voyage intérieur.
-          </motion.p>
+        <p className="slow-reveal mt-6 max-w-2xl text-sm text-[var(--color-text-secondary)]">
+          Chaque objet Kolia contient un fragment sensoriel: matière, poème, note olfactive,
+          geste culinaire. Les invitations sont rares. Les fenêtres se referment vite.
+        </p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center items-center"
+        <div className="slow-reveal mt-10 flex flex-col gap-3 text-xs uppercase tracking-[0.32em] sm:flex-row">
+          <Link
+            href="/entrer"
+            className="inline-flex min-w-[180px] items-center justify-center rounded-full border border-[var(--color-vert-kolia)] bg-[var(--color-vert-kolia)] px-8 py-3 text-[var(--color-ivoire)] transition-colors duration-700 ease-out hover:bg-[#0a2417] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-6 focus-visible:outline-[var(--color-rouge-brique)]"
           >
-            <Link href="/sabonner">
-              <button className="px-8 py-3 bg-[var(--color-terracotta)] text-white rounded-full text-[15px] font-medium hover:bg-[var(--color-ochre)] transition-all duration-200">
-                Découvrir l'expérience
-              </button>
-            </Link>
-            <Link href="/la-box">
-              <button className="px-8 py-3 bg-transparent border border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-[15px] font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-all duration-200">
-                Voir la box du mois
-              </button>
-            </Link>
-          </motion.div>
-        </motion.div>
+            Invitation
+          </Link>
+          <Link
+            href="/memoire"
+            className="inline-flex min-w-[180px] items-center justify-center rounded-full border border-[var(--color-separator)] px-8 py-3 text-[var(--color-text-secondary)] transition-colors duration-700 ease-out hover:border-[var(--color-text-primary)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-6 focus-visible:outline-[var(--color-rouge-brique)]"
+          >
+            Archives
+          </Link>
+        </div>
+
+        <p className="slow-reveal mt-12 text-xs uppercase tracking-[0.38em] text-[var(--color-text-muted)]">
+          Fenêtre actuelle — {process.env.NEXT_PUBLIC_RITUAL_WINDOW ?? "à annoncer"}
+        </p>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 text-[var(--color-text-secondary)]"
-        >
-          <span className="text-xs uppercase tracking-widest">Découvrir</span>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

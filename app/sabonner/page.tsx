@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import Button from "@/components/ui/Button";
+import Badge from "@/components/ui/Badge";
+import Card, { CardContent } from "@/components/ui/Card";
+import FadeIn from "@/components/animations/FadeIn";
 
 export default function SabonnerPage() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
 
   const plans = [
@@ -66,38 +66,37 @@ export default function SabonnerPage() {
   };
 
   return (
-    <div className="pt-24">
+    <div className="overflow-hidden pt-24">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-b from-[var(--color-sand)] to-[var(--color-background)]">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="text-[var(--color-terracotta)] uppercase tracking-widest text-sm mb-4">
+      <section className="section-padding bg-gradient-to-br from-[var(--color-ivoire)] to-[var(--color-surface)]">
+        <div className="mx-auto max-w-5xl px-6 text-center lg:px-8">
+          <FadeIn delay={0.1}>
+            <Badge variant="primary" size="md" className="mb-8">
               Rejoignez Kolia
-            </p>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--color-text-primary)] mb-8">
+            </Badge>
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.3}>
+            <h1 className="mb-8 font-[family-name:var(--font-display)] text-[clamp(2.5rem,7vw,4.5rem)] leading-[var(--leading-tight)]">
               Choisissez votre formule
             </h1>
-            <p className="text-xl text-[var(--color-text-secondary)] leading-relaxed max-w-3xl mx-auto mb-12">
-              Un rituel mensuel qui célèbre la lenteur, la beauté et les cultures africaines
-              contemporaines. Sans engagement, résiliation simple.
-            </p>
+          </FadeIn>
 
-            {/* Billing Toggle */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-flex items-center gap-4 bg-white p-2 rounded-full "
-            >
+          <FadeIn direction="up" delay={0.5}>
+            <p className="mb-12 text-[var(--font-size-xl)] leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
+              Un rituel mensuel qui célèbre la lenteur, la beauté et les cultures
+              africaines contemporaines. Sans engagement, résiliation simple.
+            </p>
+          </FadeIn>
+
+          {/* Billing Toggle */}
+          <FadeIn delay={0.7}>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-surface-elevated)] p-2 shadow-[var(--shadow-sm)]">
               <button
                 onClick={() => setBillingPeriod("monthly")}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
+                className={`rounded-full px-6 py-3 text-sm font-medium uppercase tracking-[var(--tracking-wide)] transition-all ${
                   billingPeriod === "monthly"
-                    ? "bg-[var(--color-terracotta)] text-white"
+                    ? "bg-[var(--color-vert-kolia)] text-[var(--color-ivoire)] shadow-[var(--shadow-md)]"
                     : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                 }`}
               >
@@ -105,246 +104,224 @@ export default function SabonnerPage() {
               </button>
               <button
                 onClick={() => setBillingPeriod("annual")}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
+                className={`rounded-full px-6 py-3 text-sm font-medium uppercase tracking-[var(--tracking-wide)] transition-all ${
                   billingPeriod === "annual"
-                    ? "bg-[var(--color-terracotta)] text-white"
+                    ? "bg-[var(--color-vert-kolia)] text-[var(--color-ivoire)] shadow-[var(--shadow-md)]"
                     : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                 }`}
               >
                 Annuel
-                <span className="ml-2 text-xs bg-[var(--color-ochre)] text-white px-2 py-1 rounded-full">
+                <Badge variant="secondary" size="sm" className="ml-2">
                   -17%
-                </span>
+                </Badge>
               </button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Pricing Cards */}
-      <section ref={ref} className="py-24 md:py-32 bg-[var(--color-background)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="section-padding bg-[var(--color-background)]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-3">
             {plans.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative bg-white rounded-3xl p-8  ${
-                  plan.popular ? "ring-4 ring-[var(--color-terracotta)] scale-105" : ""
-                }`}
-              >
-                {/* Popular Badge */}
-                {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-[var(--color-terracotta)] text-white px-4 py-2 rounded-full text-sm font-medium ">
-                      {plan.badge}
-                    </span>
-                  </div>
-                )}
-
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">
-                    {plan.name}
-                  </h3>
-                  <p className="text-[var(--color-text-secondary)] text-sm mb-6">
-                    {plan.description}
-                  </p>
-
-                  {/* Price */}
-                  <div className="mb-6">
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-5xl font-bold text-[var(--color-text-primary)]">
-                        {getCurrentPrice(plan).toFixed(2)}€
-                      </span>
-                      <span className="text-lg text-[var(--color-text-secondary)]">/mois</span>
+              <FadeIn key={plan.name} direction="up" delay={index * 0.15}>
+                <Card
+                  variant="elevated"
+                  padding="xl"
+                  className={`relative h-full ${
+                    plan.popular
+                      ? "border-4 border-[var(--color-rouge-brique)] scale-105"
+                      : ""
+                  }`}
+                >
+                  {plan.badge && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <Badge variant="secondary" size="md">
+                        {plan.badge}
+                      </Badge>
                     </div>
-                    {billingPeriod === "annual" && plan.annualPrice && (
-                      <p className="text-sm text-[var(--color-text-light)] mt-2">
-                        Soit {plan.annualPrice.toFixed(2)}€ facturé annuellement
+                  )}
+
+                  <CardContent>
+                    <div className="mb-8 text-center">
+                      <h3 className="mb-2 font-[family-name:var(--font-display)] text-[var(--font-size-3xl)] font-bold">
+                        {plan.name}
+                      </h3>
+                      <p className="text-[var(--font-size-sm)] text-[var(--color-text-secondary)]">
+                        {plan.description}
                       </p>
-                    )}
-                  </div>
+                    </div>
 
-                  {/* CTA Button */}
-                  <motion.button
-                    
-                    
-                    className={`w-full px-6 py-4 rounded-full text-base font-medium transition-all duration-200  ${
-                      plan.popular
-                        ? "bg-[var(--color-terracotta)] text-white hover:bg-[var(--color-ochre)]"
-                        : "bg-[var(--color-sand)] text-[var(--color-text-primary)] hover:bg-[var(--color-beige)]"
-                    }`}
-                  >
-                    {plan.cta}
-                  </motion.button>
-                </div>
+                    <div className="mb-8 text-center">
+                      <div className="mb-2 flex items-baseline justify-center gap-2">
+                        <span className="font-[family-name:var(--font-display)] text-5xl font-bold text-[var(--color-text-primary)]">
+                          {getCurrentPrice(plan).toFixed(2)}€
+                        </span>
+                        <span className="text-[var(--font-size-lg)] text-[var(--color-text-secondary)]">
+                          /mois
+                        </span>
+                      </div>
+                      {billingPeriod === "annual" && plan.annualPrice && (
+                        <p className="text-[var(--font-size-sm)] text-[var(--color-text-muted)]">
+                          Soit {plan.annualPrice.toFixed(2)}€ facturé annuellement
+                        </p>
+                      )}
+                    </div>
 
-                {/* Features */}
-                <ul className="space-y-4">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <svg
-                        className="w-5 h-5 text-[var(--color-terracotta)] flex-shrink-0 mt-0.5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-[var(--color-text-secondary)] text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+                    <Button
+                      variant={plan.popular ? "primary" : "outline"}
+                      size="lg"
+                      fullWidth
+                      className="mb-8"
+                    >
+                      {plan.cta}
+                    </Button>
+
+                    <ul className="space-y-4">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3">
+                          <svg
+                            className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-rouge-brique)]"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          <span className="text-[var(--font-size-sm)] text-[var(--color-text-secondary)]">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </FadeIn>
             ))}
           </div>
 
           {/* Trust Signals */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16 flex flex-col sm:flex-row justify-center items-center gap-6 text-sm text-[var(--color-text-light)]"
-          >
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-[var(--color-terracotta)]"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Paiement 100% sécurisé</span>
+          <FadeIn delay={0.6}>
+            <div className="mt-16 flex flex-col items-center justify-center gap-6 text-[var(--font-size-sm)] text-[var(--color-text-muted)] sm:flex-row">
+              {trustSignals.map((signal, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <svg
+                    className="h-5 w-5 text-[var(--color-rouge-brique)]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>{signal}</span>
+                </div>
+              ))}
             </div>
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-[var(--color-terracotta)]"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Résiliation en 2 clics</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-[var(--color-terracotta)]"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Satisfait ou remboursé 30 jours</span>
-            </div>
-          </motion.div>
+          </FadeIn>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 md:py-32 bg-[var(--color-sand)]">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-6">
-              Questions fréquentes
-            </h2>
-          </motion.div>
+      <section className="section-padding bg-[var(--color-surface)]">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <FadeIn>
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 font-[family-name:var(--font-display)] text-[var(--font-size-5xl)]">
+                Questions fréquentes
+              </h2>
+            </div>
+          </FadeIn>
 
           <div className="space-y-6">
-            {[
-              {
-                question: "Comment fonctionne l'abonnement ?",
-                answer:
-                  "Vous recevez automatiquement votre box Kolia chaque mois. Vous pouvez mettre en pause ou annuler à tout moment depuis votre espace membre. Aucun engagement, aucun frais de résiliation.",
-              },
-              {
-                question: "Quand vais-je recevoir ma première box ?",
-                answer:
-                  "Si vous vous abonnez avant le 25 du mois, vous recevrez votre box le mois suivant. Les box sont expédiées entre le 1er et le 5 de chaque mois.",
-              },
-              {
-                question: "Puis-je offrir un abonnement Kolia ?",
-                answer:
-                  "Absolument ! La formule Kolia Flex est parfaite pour offrir. Vous pouvez commander une ou plusieurs box en cadeau, avec un message personnalisé.",
-              },
-              {
-                question: "Les ingrédients sont-ils bio ?",
-                answer:
-                  "Nous privilégions les producteurs artisanaux et les circuits courts. La majorité de nos ingrédients sont bio ou issus de l'agriculture raisonnée. Chaque produit est tracé et son origine détaillée dans le livret.",
-              },
-              {
-                question: "Livrez-vous hors de France ?",
-                answer:
-                  "Actuellement, nous livrons en France métropolitaine et en Belgique. L'expansion vers d'autres pays européens est prévue courant 2026.",
-              },
-            ].map((faq, index) => (
-              <motion.div
-                key={faq.question}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-2xl"
-              >
-                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-[var(--color-text-secondary)] leading-relaxed">{faq.answer}</p>
-              </motion.div>
+            {faqs.map((faq, index) => (
+              <FadeIn key={faq.question} direction="up" delay={index * 0.1}>
+                <Card variant="elevated" padding="lg">
+                  <CardContent>
+                    <h3 className="mb-3 text-[var(--font-size-lg)] font-semibold text-[var(--color-text-primary)]">
+                      {faq.question}
+                    </h3>
+                    <p className="text-[var(--font-size-base)] leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
+                      {faq.answer}
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 md:py-32 bg-[var(--color-terracotta)]">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Plus de 1000 abonnés nous font déjà confiance
+      <section className="section-padding bg-[var(--color-vert-kolia)] text-[var(--color-ivoire)]">
+        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+          <FadeIn direction="up">
+            <h2 className="mb-6 font-[family-name:var(--font-display)] text-[var(--font-size-5xl)] text-[var(--color-ivoire)]">
+              Plus de 1000 abonnés
+              <br />
+              nous font déjà confiance
             </h2>
-            <p className="text-xl text-white/90 mb-10 leading-relaxed">
-              Rejoignez une communauté passionnée qui célèbre la gastronomie africaine avec
-              authenticité et modernité.
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.2}>
+            <p className="mb-10 text-[var(--font-size-xl)] leading-[var(--leading-relaxed)] text-[var(--color-ivoire)]/90">
+              Rejoignez une communauté passionnée qui célèbre la gastronomie
+              africaine avec authenticité et modernité.
             </p>
-            <motion.button
-              
-              
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.4}>
+            <Button
+              variant="secondary"
+              size="xl"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="px-10 py-4 bg-white text-[var(--color-terracotta)] rounded-full text-lg font-medium hover:bg-[var(--color-sand)] transition-all duration-200 "
+              className="bg-[var(--color-ivoire)] text-[var(--color-vert-kolia)] hover:bg-[var(--color-surface)]"
             >
               Choisir ma formule
-            </motion.button>
-          </motion.div>
+            </Button>
+          </FadeIn>
         </div>
       </section>
     </div>
   );
 }
+
+const trustSignals = [
+  "Paiement 100% sécurisé",
+  "Résiliation en 2 clics",
+  "Satisfait ou remboursé 30 jours",
+];
+
+const faqs = [
+  {
+    question: "Comment fonctionne l'abonnement ?",
+    answer:
+      "Vous recevez automatiquement votre box Kolia chaque mois. Vous pouvez mettre en pause ou annuler à tout moment depuis votre espace membre. Aucun engagement, aucun frais de résiliation.",
+  },
+  {
+    question: "Quand vais-je recevoir ma première box ?",
+    answer:
+      "Si vous vous abonnez avant le 25 du mois, vous recevrez votre box le mois suivant. Les box sont expédiées entre le 1er et le 5 de chaque mois.",
+  },
+  {
+    question: "Puis-je offrir un abonnement Kolia ?",
+    answer:
+      "Absolument ! La formule Kolia Flex est parfaite pour offrir. Vous pouvez commander une ou plusieurs box en cadeau, avec un message personnalisé.",
+  },
+  {
+    question: "Les ingrédients sont-ils bio ?",
+    answer:
+      "Nous privilégions les producteurs artisanaux et les circuits courts. La majorité de nos ingrédients sont bio ou issus de l'agriculture raisonnée. Chaque produit est tracé et son origine détaillée dans le livret.",
+  },
+  {
+    question: "Livrez-vous hors de France ?",
+    answer:
+      "Actuellement, nous livrons en France métropolitaine et en Belgique. L'expansion vers d'autres pays européens est prévue courant 2026.",
+  },
+];

@@ -2,49 +2,43 @@
 
 import Link from "next/link";
 
-const secondaryLinks = [
-  { label: "Lettre Kolia", href: "/contact" },
-  { label: "Mentions légales", href: "/mentions-legales" },
-  { label: "Confidentialité", href: "/confidentialite" },
-  { label: "Conditions", href: "/cgv" },
-];
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const links = [
+    { href: "/entrer", label: "Entrer" },
+    { href: "/rituel", label: "Rituel" },
+    { href: "/memoire", label: "Mémoire" },
+    { href: "/contact", label: "Lettre" },
+  ];
+
   return (
-    <footer className="border-t border-[var(--color-separator)] bg-[var(--color-background)]/60 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 py-16 sm:px-6 lg:px-8">
-        <div className="max-w-xl space-y-5 slow-reveal">
-          <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">Kolia</p>
-          <p className="text-sm text-[var(--color-text-secondary)]">
-            Maison sensorielle du goût. Objets rituels rares, révélés avec lenteur.
+    <footer className="border-t border-[var(--color-separator)] bg-[var(--color-background)]">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 sm:flex-row sm:items-end sm:justify-between">
+        <div className="space-y-3">
+          <p className="text-xs uppercase tracking-[0.45em] text-[var(--color-text-muted)]">
+            Kolia
           </p>
-          <Link
-            href="/entrer"
-            className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.38em] text-[var(--color-text-secondary)] transition-colors duration-700 ease-out hover:text-[var(--color-rouge-brique)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-6 focus-visible:outline-[var(--color-rouge-brique)]"
-          >
-            Entrer. Ou attendre.
-            <span aria-hidden="true">→</span>
-          </Link>
+          <p className="text-base text-[var(--color-text-secondary)]">
+            Maison sensorielle. Objets rituels en quantité limitée.
+          </p>
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
+            © {currentYear} · Silence conservé.
+          </p>
         </div>
 
-        <div className="grid gap-6 text-xs uppercase tracking-[0.32em] text-[var(--color-text-muted)] sm:grid-cols-2 md:grid-cols-4">
-          {secondaryLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="border-b border-transparent pb-3 transition-colors duration-700 ease-out hover:border-[var(--color-separator)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-6 focus-visible:outline-[var(--color-rouge-brique)]"
-            >
-              {link.label}
-            </Link>
+        <nav className="space-y-3 text-xs uppercase tracking-[0.4em] text-[var(--color-text-secondary)] sm:text-right">
+          {links.map((link) => (
+            <div key={link.href}>
+              <Link
+                href={link.href}
+                className="transition-colors duration-[var(--transition-fast)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
+              >
+                {link.label}
+              </Link>
+            </div>
           ))}
-        </div>
-
-        <div className="flex flex-col gap-3 border-t border-[var(--color-separator)] pt-6 text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p>© {currentYear} Kolia. Maison Sensorielle.</p>
-          <p>Paris · Tokyo · New York</p>
-        </div>
+        </nav>
       </div>
     </footer>
   );

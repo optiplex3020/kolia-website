@@ -12,47 +12,47 @@ export default function EntrerPage() {
   };
 
   return (
-    <section className="mx-auto flex min-h-[calc(100vh-80px)] max-w-2xl flex-col justify-center gap-10 px-6 py-24 sm:px-8">
-      <header className="space-y-4">
-        <p className="text-xs uppercase tracking-[0.48em] text-[var(--color-text-muted)] slow-reveal">
-          Entrer
-        </p>
-        <h1 className="text-3xl font-medium slow-reveal sm:text-4xl">
-          Invitation requise.
-        </h1>
-        <p className="text-sm text-[var(--color-text-secondary)] slow-reveal">
-          Ce vestibule accueille les invitations Kolia en cours. Chaque code est unique,
-          réservé aux éditions ouvertes. Lorsque la fenêtre se referme, le vestibule se tait.
-        </p>
-      </header>
+    <section className="mx-auto flex min-h-[calc(100vh-80px)] max-w-xl flex-col justify-center gap-10 px-6 py-24">
+      <p className="text-xs uppercase tracking-[0.6em] text-[var(--color-text-muted)]">
+        Entrer
+      </p>
 
-      <form onSubmit={handleSubmit} className="space-y-6 slow-reveal">
-        <label htmlFor="code" className="block text-xs uppercase tracking-[0.32em] text-[var(--color-text-secondary)]">
-          Code d&apos;invitation
+      <h1 className="text-[clamp(2rem,4vw,2.8rem)] font-[family-name:var(--font-display)] leading-[var(--leading-tight)]">
+        Invitation requise.
+      </h1>
+
+      <p className="text-sm text-[var(--color-text-secondary)]">
+        Chaque code ouvre une seule fois la porte. Lorsque la fenêtre se referme, le vestibule retourne au silence.
+      </p>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <label
+          htmlFor="code"
+          className="block text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]"
+        >
+          Code Kolia
         </label>
         <input
           id="code"
           value={code}
           onChange={(event) => setCode(event.target.value.toUpperCase())}
           placeholder="XXXX-XXXX"
-          className="w-full rounded-full border border-[var(--color-separator)] bg-transparent px-6 py-3 text-sm uppercase tracking-[0.38em] text-[var(--color-text-primary)] outline-none transition-colors duration-700 ease-out focus:border-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
+          className="w-full rounded-full border border-[var(--color-separator)] bg-transparent px-6 py-3 text-center text-sm uppercase tracking-[0.5em] text-[var(--color-text-primary)] outline-none transition-colors duration-[var(--transition-base)] focus:border-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
         />
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center rounded-full border border-[var(--color-separator)] px-8 py-3 text-xs uppercase tracking-[0.32em] text-[var(--color-text-secondary)] transition-colors duration-700 ease-out hover:border-[var(--color-text-primary)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
+          className="w-full rounded-full border border-[var(--color-text-primary)] px-8 py-3 text-xs uppercase tracking-[0.4em] text-[var(--color-text-primary)] transition-colors duration-[var(--transition-base)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-ivoire)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
         >
           Soumettre
         </button>
       </form>
 
-      <footer className="space-y-3 text-xs uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
-        <p>Fenêtre fermée? Patience recommandée.</p>
+      <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
+        <p>Fenêtre actuelle : mardi 14h → épuisement.</p>
         {submitted && (
-          <p className="text-[var(--color-rouge-brique)]">
-            Les invitations seront vérifiées lors de la prochaine ouverture.
-          </p>
+          <p className="mt-3 text-[var(--color-rouge-brique)]">Vérification en attente. Merci d&apos;attendre.</p>
         )}
-      </footer>
+      </div>
     </section>
   );
 }

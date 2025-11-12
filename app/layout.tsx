@@ -1,48 +1,46 @@
 import type { Metadata } from "next";
-import { Work_Sans, Playfair_Display } from "next/font/google";
+import { Work_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import AnimationClassSetter from "@/components/AnimationClassSetter";
 
-// Sans-serif interface fallback (Monument Grotesk alternative)
 const workSans = Work_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 });
 
-// Serif display fallback (Romie alternative)
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   variable: "--font-display",
 });
 
 export const metadata: Metadata = {
-  title: "KOLIA - Maison Sensorielle Culinaire",
+  title: "Kolia — Maison sensorielle du goût",
   description:
-    "Une expérience gastronomique mensuelle qui réinvente les cultures africaines et diasporiques. Découvrez des saveurs authentiques, des histoires inspirantes et un rituel culinaire unique.",
+    "Vestibule numérique d’une maison sensorielle. Accès restreint aux rituels Kolia, objets rares mêlant goût, mémoire et silence.",
   keywords: [
-    "gastronomie africaine",
-    "box culinaire",
-    "cuisine africaine",
-    "expérience sensorielle",
-    "abonnement gastronomique",
+    "maison sensorielle",
+    "experience gustative",
+    "objets rituels",
+    "kolia",
+    "editions limitees",
   ],
   authors: [{ name: "Kolia" }],
   openGraph: {
-    title: "KOLIA - Maison Sensorielle Culinaire",
+    title: "Kolia — Maison sensorielle du goût",
     description:
-      "Une expérience gastronomique mensuelle qui réinvente les cultures africaines et diasporiques.",
+      "Entrer ou attendre. Kolia, maison sensorielle protégeant les rituels gustatifs rares.",
     type: "website",
     locale: "fr_FR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "KOLIA - Maison Sensorielle Culinaire",
+    title: "Kolia — Maison sensorielle du goût",
     description:
-      "Une expérience gastronomique mensuelle qui réinvente les cultures africaines et diasporiques.",
+      "Vestibule numérique des rituels Kolia. Accès restreint, éditions limitées.",
   },
 };
 
@@ -52,9 +50,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${workSans.variable} ${playfair.variable}`}>
-      <body className="antialiased page-fade">
-        <AnimationClassSetter />
+    <html lang="fr" className={`${workSans.variable} ${cormorant.variable}`}>
+      <body className="antialiased">
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

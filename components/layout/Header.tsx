@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -14,83 +15,108 @@ const NAV_LINKS = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
-      setIsScrolled(window.scrollY > 28);
+      setIsScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 border-b border-transparent transition-all duration-700 ease-out",
-        isScrolled
-          ? "bg-[var(--color-background)]/96 backdrop-blur-md border-[var(--color-separator)]"
-          : "bg-transparent"
-      )}
-    >
-      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="tracking-[0.45em] text-xs font-semibold uppercase text-[var(--color-text-primary)] transition-colors duration-700 ease-out hover:text-[var(--color-rouge-brique)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
-        >
-          Kolia
-        </Link>
-
-        <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-xs uppercase tracking-[0.38em] text-[var(--color-text-secondary)] transition-all duration-700 ease-out hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-6 focus-visible:outline-[var(--color-rouge-brique)]"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          className="md:hidden rounded-full border border-[var(--color-separator)] px-3 py-2 text-xs uppercase tracking-[0.32em] text-[var(--color-text-secondary)] transition-colors duration-700 ease-out hover:border-[var(--color-text-primary)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          Menu
-        </button>
-      </nav>
-
-      <div
-        id="mobile-menu"
+    <>
+      <header
         className={cn(
-          "md:hidden overflow-hidden border-t border-[var(--color-separator)] transition-[max-height] duration-700 ease-out",
-          isMobileMenuOpen ? "max-h-96" : "max-h-0"
+          "fixed inset-x-0 top-0 z-[var(--z-fixed)] border-b transition-all duration-[var(--transition-base)]",
+          isScrolled
+            ? "backdrop-blur-xl bg-[var(--color-background)]/85 border-[var(--color-separator)] shadow-[var(--shadow-sm)]"
+            : "bg-[var(--color-background)] border-transparent"
         )}
       >
-        <div className="px-4 pb-6 pt-4">
-          <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-text-muted)] slow-reveal">
-            Navigation
-          </p>
-          <ul className="mt-5 space-y-3">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href} className="slow-reveal">
+        <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:px-8">
+          <Link
+            href="/"
+            className="text-sm uppercase tracking-[0.4em] text-[var(--color-text-primary)] transition-colors duration-[var(--transition-fast)] hover:text-[var(--color-rouge-brique)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
+          >
+            Kolia
+          </Link>
+
+          <div className="hidden items-center gap-9 lg:flex">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
                 <Link
+                  key={link.href}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between border-b border-transparent pb-2 text-sm uppercase tracking-[0.32em] text-[var(--color-text-secondary)] transition-colors duration-700 ease-out hover:border-[var(--color-separator)] hover:text-[var(--color-text-primary)]"
+                  className={cn(
+                    "text-[10px] uppercase tracking-[0.5em] transition-colors duration-[var(--transition-fast)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]",
+                    isActive
+                      ? "text-[var(--color-text-primary)]"
+                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                  )}
                 >
                   {link.label}
-                  <span aria-hidden="true">→</span>
                 </Link>
-              </li>
-            ))}
-          </ul>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-separator)] lg:hidden"
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Menu"
+          >
+            <span className="text-[10px] uppercase tracking-[0.4em]">Menu</span>
+          </button>
+        </nav>
+      </header>
+
+      <aside
+        className={cn(
+          "fixed inset-0 z-[var(--z-modal)] bg-[var(--color-overlay)]/70 backdrop-blur-lg transition-opacity duration-[var(--transition-fast)] lg:hidden",
+          isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        )}
+        aria-hidden={!isMobileMenuOpen}
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        <div
+          className="absolute inset-x-4 top-24 rounded-[var(--radius-xl)] border border-[var(--color-separator)] bg-[var(--color-background)] p-8 shadow-[var(--shadow-lg)]"
+          onClick={(event) => event.stopPropagation()}
+        >
+          <p className="mb-6 text-xs uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
+            Vestibule
+          </p>
+          <nav className="space-y-4">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "block text-lg uppercase tracking-[0.4em]",
+                    isActive
+                      ? "text-[var(--color-text-primary)]"
+                      : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
-      </div>
-    </header>
+      </aside>
+    </>
   );
 }

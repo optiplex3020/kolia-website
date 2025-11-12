@@ -1,22 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 export default function FinalCTA() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-[var(--color-sand)]">
       <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div className={ready ? "slow-reveal" : ""}>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text-primary)] mb-6">
             Prêt à ralentir
             <br />
@@ -29,12 +24,7 @@ export default function FinalCTA() {
           </p>
 
           {/* Pricing Preview */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-block bg-white p-6 rounded-2xl  mb-10"
-          >
+          <div className={`inline-block bg-white p-6 rounded-2xl mb-16 ${ready ? "slow-reveal" : ""}`}>
             <p className="text-sm text-[var(--color-text-secondary)] mb-2">À partir de</p>
             <div className="flex items-baseline justify-center gap-2">
               <span className="text-5xl font-bold text-[var(--color-text-primary)]">39,99€</span>
@@ -43,42 +33,24 @@ export default function FinalCTA() {
             <p className="text-sm text-[var(--color-text-light)] mt-2">
               Sans engagement • Livraison offerte
             </p>
-          </motion.div>
+          </div>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
+          <div className={`flex flex-col sm:flex-row flex-wrap gap-6 justify-center items-center mt-2 ${ready ? "slow-reveal" : ""}`}>
             <Link href="/sabonner">
-              <motion.button
-                
-                
-                className="px-10 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-lg font-medium hover:bg-[var(--color-ochre)] transition-all duration-200 "
-              >
+              <span className="px-10 py-4 bg-[var(--color-terracotta)] text-white rounded-full text-lg font-medium transition-colors duration-700 ease-out hover:bg-[var(--color-ochre)]">
                 Commencer l'expérience
-              </motion.button>
+              </span>
             </Link>
             <Link href="/univers">
-              <motion.button
-                
-                
-                className="px-10 py-4 bg-transparent border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-lg font-medium hover:bg-[var(--color-text-primary)] hover:text-white transition-all duration-200"
-              >
+              <span className="px-10 py-4 bg-transparent border border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-lg font-medium transition-colors duration-700 ease-out hover:bg-[var(--color-text-primary)] hover:text-white">
                 En savoir plus
-              </motion.button>
+              </span>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Trust Signals */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 text-sm text-[var(--color-text-light)]"
-          >
+          <div className={`mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 text-sm text-[var(--color-text-light)] ${ready ? "slow-reveal" : ""}`}>
             <div className="flex items-center gap-2">
               <svg
                 className="w-5 h-5 text-[var(--color-terracotta)]"
@@ -121,8 +93,8 @@ export default function FinalCTA() {
               </svg>
               <span>Satisfaction garantie</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

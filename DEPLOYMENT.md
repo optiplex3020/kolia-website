@@ -64,11 +64,12 @@ Chaque push sur `main` déclenche un nouveau déploiement.
 - `/collections` - Archive des collections
 - `/journal` - Blog/Journal
 
-## Dépannage: 404 NOT_FOUND
+## Dépannage: 404 NOT_FOUND / builder Next.js
 
 Si Vercel affiche `404: NOT_FOUND` malgré un build OK, vérifiez que le projet n'est pas en **Framework Preset: Other**.
-Ce repo inclut `vercel.json` pour forcer l'utilisation de `@vercel/next`, mais si des overrides existent dans Vercel,
-repassez le preset sur **Next.js** puis redeployez.
+
+Ce repo inclut `vercel.json` pour forcer l'utilisation du builder `@vercel/next` (source: `package.json`). Si vous aviez
+un preset incorrect auparavant, repassez le preset sur **Next.js** puis redeployez.
 
 ## Optimisations Automatiques de Vercel
 

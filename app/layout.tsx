@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Work_Sans, Cormorant_Garamond } from "next/font/google";
+import { Bodoni_Moda, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const workSans = Work_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 });
 
-const cormorant = Cormorant_Garamond({
+const bodoniModa = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500"],
   display: "swap",
   variable: "--font-display",
 });
@@ -20,7 +20,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Kolia — Maison sensorielle du goût",
   description:
-    "Vestibule numérique d’une maison sensorielle. Accès restreint aux rituels Kolia, objets rares mêlant goût, mémoire et silence.",
+    "Maison sensorielle du goût. Kolia compose des objets rituels mensuels mêlant goût, odeur, texte et matière. Accès par invitation.",
   keywords: [
     "maison sensorielle",
     "experience gustative",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kolia — Maison sensorielle du goût",
     description:
-      "Entrer ou attendre. Kolia, maison sensorielle protégeant les rituels gustatifs rares.",
+      "Entrer ou attendre. Kolia protège des rituels gustatifs rares, pensés comme des objets de collection.",
     type: "website",
     locale: "fr_FR",
   },
@@ -50,10 +50,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${workSans.variable} ${cormorant.variable}`}>
-      <body className="antialiased">
+    <html lang="fr" className={`${spaceGrotesk.variable} ${bodoniModa.variable}`}>
+      <body className="antialiased w-full">
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen w-full">{children}</main>
         <Footer />
       </body>
     </html>

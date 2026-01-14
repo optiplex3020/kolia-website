@@ -17,18 +17,19 @@ export default function EntrerPage() {
         Entrer
       </p>
 
-      <h1 className="text-[clamp(2rem,4vw,2.8rem)] font-[family-name:var(--font-display)] leading-[var(--leading-tight)]">
-        Invitation requise.
+      <h1 className="text-[clamp(2rem,4vw,2.8rem)] font-[family-name:var(--font-display)] uppercase tracking-[var(--tracking-wide)]">
+        Accès par invitation.
       </h1>
 
       <p className="text-sm text-[var(--color-text-secondary)]">
-        Chaque code ouvre une seule fois la porte. Lorsque la fenêtre se referme, le vestibule retourne au silence.
+        Le code ouvre une seule fois, pendant la fenêtre en cours. Pour recevoir une invitation,
+        écrivez à la Lettre Kolia ou passez par un membre existant.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <label
           htmlFor="code"
-          className="block text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]"
+          className="block text-xs uppercase tracking-[0.45em] text-[var(--color-text-muted)]"
         >
           Code Kolia
         </label>
@@ -41,16 +42,18 @@ export default function EntrerPage() {
         />
         <button
           type="submit"
-          className="w-full rounded-full border border-[var(--color-text-primary)] px-8 py-3 text-xs uppercase tracking-[0.4em] text-[var(--color-text-primary)] transition-colors duration-[var(--transition-base)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-ivoire)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
+          className="w-full rounded-full border border-[var(--color-vert-kolia)] bg-[var(--color-vert-kolia)] px-8 py-3 text-xs uppercase tracking-[0.4em] text-[var(--color-ivoire)] transition-colors duration-[var(--transition-base)] hover:bg-transparent hover:text-[var(--color-vert-kolia)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
         >
-          Soumettre
+          Entrer
         </button>
       </form>
 
       <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
         <p>Fenêtre actuelle : mardi 14h → épuisement.</p>
         {submitted && (
-          <p className="mt-3 text-[var(--color-rouge-brique)]">Vérification en attente. Merci d&apos;attendre.</p>
+          <p className="mt-3 text-[var(--color-rouge-brique)]">
+            Vérification en attente. Merci d&apos;attendre.
+          </p>
         )}
       </div>
     </section>

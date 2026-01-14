@@ -1,307 +1,152 @@
 import Link from "next/link";
-import Button from "@/components/ui/Button";
-import Badge from "@/components/ui/Badge";
-import Card, { CardContent } from "@/components/ui/Card";
-import FadeIn from "@/components/animations/FadeIn";
 
 export const metadata = {
-  title: "Découvrir Kolia — Maison Sensorielle du Goût",
+  title: "Découvrir Kolia — Maison sensorielle du goût",
   description:
-    "Plongez dans l'univers Kolia. Découvrez comment nous célébrons les cultures culinaires africaines à travers des expériences sensorielles uniques.",
+    "Kolia conçoit des objets rituels mensuels mêlant goût, odeur, texte et matière. Accès par invitation.",
 };
+
+const pillars = [
+  {
+    title: "Maison sensorielle",
+    text: "Nous composons des expériences matérielles, limitées en quantité et dans le temps.",
+  },
+  {
+    title: "Rareté protégée",
+    text: "Jamais de réassort. Une fenêtre courte, un nombre précis, un objet numéroté.",
+  },
+  {
+    title: "Lenteur assumée",
+    text: "Un seul rituel par mois. Le temps devient une matière.",
+  },
+];
+
+const ritualElements = [
+  {
+    title: "Élément gustatif",
+    text: "Un goût rare, préparé pour un geste unique.",
+  },
+  {
+    title: "Élément olfactif",
+    text: "Une odeur qui se révèle à l'ouverture.",
+  },
+  {
+    title: "Fragment poétique",
+    text: "Un texte imprimé, jamais seulement numérique.",
+  },
+  {
+    title: "Fragment sonore",
+    text: "Un plan fixe ou une composition courte, par QR code discret.",
+  },
+  {
+    title: "Objet tactile",
+    text: "La boîte elle-même devient un objet à conserver.",
+  },
+];
+
+const accessRules = [
+  "Accès par invitation uniquement.",
+  "Fenêtre d'achat : mardi 14h, 48h maximum.",
+  "Quantités limitées (200 à 500 objets).",
+  "Aucune promotion, aucun réassort.",
+];
 
 export default function DecouvrirPage() {
   return (
-    <div className="overflow-hidden pt-24">
-      {/* Hero Section */}
-      <section className="section-padding relative bg-gradient-to-br from-[var(--color-ivoire)] via-[var(--color-background)] to-[var(--color-surface)]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <FadeIn delay={0.1}>
-              <Badge variant="primary" size="md" className="mb-8">
-                Découvrir Kolia
-              </Badge>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.3}>
-              <h1 className="mb-8 font-[family-name:var(--font-display)] text-[clamp(2.5rem,7vw,4.5rem)] leading-[var(--leading-tight)]">
-                Une expérience
-                <br />
-                <span className="text-[var(--color-rouge-brique)]">
-                  multi-sensorielle
-                </span>
-              </h1>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.5}>
-              <p className="mb-12 text-[var(--font-size-xl)] leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
-                Kolia réinvente l'art de la dégustation. Chaque mois, nous
-                composons une box qui célèbre un territoire, une tradition, des
-                savoir-faire ancestraux africains et diasporiques.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.7}>
-              <Button variant="primary" size="xl" asChild>
-                <Link href="/sabonner">Commencer l'aventure</Link>
-              </Button>
-            </FadeIn>
-          </div>
-        </div>
-
-        {/* Decorative blob */}
-        <div className="pointer-events-none absolute -right-48 top-0 h-96 w-96 rounded-full bg-[var(--color-bronze)]/10 blur-3xl" />
-      </section>
-
-      {/* Comment ça marche */}
-      <section className="section-padding bg-[var(--color-surface-elevated)]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-20 text-center">
-              <h2 className="mb-4 font-[family-name:var(--font-display)] text-[var(--font-size-5xl)]">
-                Comment ça marche ?
-              </h2>
-              <p className="text-[var(--font-size-lg)] text-[var(--color-text-secondary)]">
-                Une expérience en 4 étapes simples
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step, index) => (
-              <FadeIn key={index} direction="up" delay={index * 0.15}>
-                <div className="relative">
-                  {/* Step number */}
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-vert-kolia)] to-[var(--color-vert-kolia)]/70 text-2xl font-bold text-[var(--color-ivoire)]">
-                    {index + 1}
-                  </div>
-
-                  <h3 className="mb-3 text-[var(--font-size-2xl)] font-semibold">
-                    {step.title}
-                  </h3>
-                  <p className="text-[var(--font-size-base)] leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
-                    {step.description}
-                  </p>
-
-                  {/* Connector line (except last) */}
-                  {index < steps.length - 1 && (
-                    <div className="absolute right-0 top-8 hidden h-[2px] w-full bg-gradient-to-r from-[var(--color-vert-kolia)] to-transparent lg:block" />
-                  )}
-                </div>
-              </FadeIn>
-            ))}
+    <div className="pt-24">
+      <section className="section-padding border-b border-[var(--color-separator)]">
+        <div className="mx-auto max-w-5xl px-6 text-center lg:px-8">
+          <p className="text-xs uppercase tracking-[0.6em] text-[var(--color-text-muted)]">
+            Découvrir
+          </p>
+          <h1 className="mt-6 font-[family-name:var(--font-display)] text-[clamp(2.4rem,7vw,4.2rem)] uppercase tracking-[var(--tracking-ritual)]">
+            Kolia, maison sensorielle
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-base text-[var(--color-text-secondary)]">
+            Kolia n&apos;est ni une box alimentaire ni un service. Nous créons des objets
+            rituels mensuels qui contiennent un goût, une odeur, un poème et une matière.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 text-xs uppercase tracking-[0.45em] sm:flex-row">
+            <Link
+              href="/entrer"
+              className="rounded-full border border-[var(--color-vert-kolia)] bg-[var(--color-vert-kolia)] px-10 py-3 text-[var(--color-ivoire)] transition-colors duration-[var(--transition-base)] hover:bg-transparent hover:text-[var(--color-vert-kolia)]"
+            >
+              Entrer
+            </Link>
+            <Link
+              href="/rituel"
+              className="rounded-full border border-[var(--color-separator)] px-10 py-3 text-[var(--color-text-secondary)] transition-colors duration-[var(--transition-base)] hover:border-[var(--color-text-primary)] hover:text-[var(--color-text-primary)]"
+            >
+              Voir le rituel
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Ce que vous recevez */}
-      <section className="section-padding bg-gradient-to-b from-[var(--color-background)] to-[var(--color-surface)]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-20 text-center">
-              <h2 className="mb-4 font-[family-name:var(--font-display)] text-[var(--font-size-5xl)]">
-                Ce que contient une box Kolia
-              </h2>
-              <p className="text-[var(--font-size-lg)] text-[var(--color-text-secondary)]">
-                Six éléments soigneusement sélectionnés pour éveiller vos sens
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {boxContents.map((content, index) => (
-              <FadeIn key={index} direction="up" delay={index * 0.1}>
-                <Card variant="elevated" padding="lg" className="h-full">
-                  <CardContent>
-                    <div className="mb-6 text-5xl">{content.icon}</div>
-                    <h3 className="mb-3 text-[var(--font-size-xl)] font-semibold">
-                      {content.title}
-                    </h3>
-                    <p className="text-[var(--font-size-sm)] text-[var(--color-text-secondary)]">
-                      {content.description}
-                    </p>
-                    {content.examples && (
-                      <ul className="mt-4 space-y-2 text-[var(--font-size-sm)] text-[var(--color-text-muted)]">
-                        {content.examples.map((example, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-[var(--color-rouge-brique)]">
-                              •
-                            </span>
-                            {example}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </CardContent>
-                </Card>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Nos valeurs */}
-      <section className="section-padding bg-[var(--color-vert-kolia)] text-[var(--color-ivoire)]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-            <FadeIn direction="right">
-              <div>
-                <h2 className="mb-8 font-[family-name:var(--font-display)] text-[var(--font-size-5xl)] text-[var(--color-ivoire)]">
-                  Nos engagements
-                </h2>
-                <p className="text-[var(--font-size-lg)] leading-[var(--leading-relaxed)] text-[var(--color-ivoire)]/90">
-                  Chez Kolia, chaque décision est guidée par nos valeurs
-                  fondamentales : authenticité, équité, durabilité et excellence.
+      <section className="section-padding">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-3">
+            {pillars.map((pillar) => (
+              <div key={pillar.title} className="rounded-[var(--radius-xl)] border border-[var(--color-separator)] p-6">
+                <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
+                  {pillar.title}
+                </p>
+                <p className="mt-4 text-sm text-[var(--color-text-secondary)]">
+                  {pillar.text}
                 </p>
               </div>
-            </FadeIn>
-
-            <FadeIn direction="left" delay={0.2}>
-              <div className="space-y-6">
-                {values.map((value, index) => (
-                  <div
-                    key={index}
-                    className="rounded-[var(--radius-xl)] border border-[var(--color-ivoire)]/20 bg-[var(--color-ivoire)]/10 p-6 backdrop-blur-sm"
-                  >
-                    <div className="mb-2 flex items-center gap-3">
-                      <span className="text-2xl">{value.icon}</span>
-                      <h3 className="text-[var(--font-size-lg)] font-semibold text-[var(--color-ivoire)]">
-                        {value.title}
-                      </h3>
-                    </div>
-                    <p className="text-[var(--font-size-sm)] text-[var(--color-ivoire)]/80">
-                      {value.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="section-padding bg-gradient-to-b from-[var(--color-surface)] to-[var(--color-background)]">
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-          <FadeIn direction="up">
-            <h2 className="mb-6 font-[family-name:var(--font-display)] text-[var(--font-size-5xl)]">
-              Prêt à découvrir
-              <br />
-              votre première box ?
+      <section className="section-padding border-y border-[var(--color-separator)] bg-[var(--color-surface)]">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="font-[family-name:var(--font-display)] text-[var(--font-size-5xl)] uppercase tracking-[var(--tracking-wide)]">
+              Ce que contient un rituel
             </h2>
-          </FadeIn>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {ritualElements.map((element) => (
+              <div key={element.title} className="rounded-[var(--radius-xl)] border border-[var(--color-separator)] bg-[var(--color-background)] p-6">
+                <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
+                  {element.title}
+                </p>
+                <p className="mt-4 text-sm text-[var(--color-text-secondary)]">
+                  {element.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <FadeIn direction="up" delay={0.2}>
-            <p className="mb-12 text-[var(--font-size-xl)] leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
-              Choisissez l'abonnement qui vous correspond et recevez votre
-              première box Kolia sous 5 à 7 jours.
-            </p>
-          </FadeIn>
-
-          <FadeIn direction="up" delay={0.4}>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button variant="primary" size="xl" asChild>
-                <Link href="/sabonner">Voir les abonnements</Link>
-              </Button>
-              <Button variant="outline" size="xl" asChild>
-                <Link href="/collections">Explorer les collections</Link>
-              </Button>
+      <section className="section-padding">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <h2 className="font-[family-name:var(--font-display)] text-[var(--font-size-5xl)] uppercase tracking-[var(--tracking-wide)]">
+                Accès et rareté
+              </h2>
+              <p className="mt-6 text-base text-[var(--color-text-secondary)]">
+                Le vestibule s&apos;ouvre rarement. Kolia protège la lenteur, la matière et le
+                silence. Les informations restent simples, le geste est clair.
+              </p>
             </div>
-          </FadeIn>
+            <div className="rounded-[var(--radius-xl)] border border-[var(--color-separator)] p-6">
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
+                Règles d&apos;accès
+              </p>
+              <ul className="mt-4 space-y-3 text-sm text-[var(--color-text-secondary)]">
+                {accessRules.map((rule) => (
+                  <li key={rule}>{rule}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   );
 }
-
-const steps = [
-  {
-    title: "Choisissez",
-    description:
-      "Sélectionnez l'abonnement qui correspond à vos envies : Découverte, Flex ou Prestige.",
-  },
-  {
-    title: "Recevez",
-    description:
-      "Chaque début de mois, votre box arrive chez vous avec son livret et ses surprises.",
-  },
-  {
-    title: "Découvrez",
-    description:
-      "Explorez les ingrédients, lisez les récits, écoutez la playlist, cuisinez les recettes.",
-  },
-  {
-    title: "Partagez",
-    description:
-      "Rejoignez notre communauté, participez aux masterclass et partagez vos créations.",
-  },
-];
-
-const boxContents = [
-  {
-    icon: "🌶️",
-    title: "Ingrédients rares",
-    description:
-      "3 à 5 ingrédients premium sélectionnés chez des producteurs africains.",
-    examples: ["Épices artisanales", "Huiles précieuses", "Graines anciennes"],
-  },
-  {
-    icon: "📖",
-    title: "Livret recettes",
-    description:
-      "20 à 24 pages de recettes, récits et techniques signées par des chefs locaux.",
-    examples: ["4 recettes détaillées", "Histoire des ingrédients", "Conseils de chef"],
-  },
-  {
-    icon: "🎨",
-    title: "Œuvre d'art",
-    description:
-      "Une création originale signée par un artiste africain contemporain.",
-    examples: ["Illustration exclusive", "Carte postale", "Affiche"],
-  },
-  {
-    icon: "🎵",
-    title: "Playlist",
-    description:
-      "Une sélection musicale pour accompagner votre expérience culinaire.",
-  },
-  {
-    icon: "🎥",
-    title: "Masterclass",
-    description:
-      "Accès à une masterclass en ligne avec le chef ou producteur du mois.",
-  },
-  {
-    icon: "👥",
-    title: "Communauté",
-    description:
-      "Rejoignez notre espace membre pour échanger, partager et apprendre.",
-  },
-];
-
-const values = [
-  {
-    icon: "🤝",
-    title: "Commerce équitable",
-    description:
-      "Nous rémunérons justement tous nos partenaires et producteurs, avec transparence.",
-  },
-  {
-    icon: "🌱",
-    title: "Durabilité",
-    description:
-      "Packaging recyclable, ingrédients bio, logistique optimisée et compensée carbone.",
-  },
-  {
-    icon: "✨",
-    title: "Excellence",
-    description:
-      "Chaque élément est sélectionné pour sa qualité exceptionnelle et son histoire unique.",
-  },
-  {
-    icon: "🌍",
-    title: "Authenticité",
-    description:
-      "Collaborations directes avec des artisans pour préserver les savoir-faire traditionnels.",
-  },
-];

@@ -16,7 +16,7 @@ export default function Badge({
   ...props
 }: BadgeProps) {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-full font-medium uppercase tracking-[var(--tracking-wider)] whitespace-nowrap";
+    "inline-flex items-center justify-center rounded-full text-[9px] font-medium uppercase tracking-[0.45em] whitespace-nowrap";
 
   const variants = {
     default:
@@ -24,7 +24,7 @@ export default function Badge({
     primary:
       "bg-[var(--color-vert-kolia)] text-[var(--color-ivoire)]",
     secondary:
-      "bg-[var(--color-rouge-brique)] text-[var(--color-ivoire)]",
+      "bg-[var(--color-bronze)] text-[var(--color-ivoire)]",
     outline:
       "bg-transparent text-[var(--color-text-primary)] border border-[var(--color-text-primary)]",
     success:
@@ -34,9 +34,9 @@ export default function Badge({
   };
 
   const sizes = {
-    sm: "px-2 py-0.5 text-[9px]",
-    md: "px-3 py-1 text-[10px]",
-    lg: "px-4 py-1.5 text-[11px]",
+    sm: "px-2 py-0.5",
+    md: "px-3 py-1",
+    lg: "px-4 py-1.5",
   };
 
   return (

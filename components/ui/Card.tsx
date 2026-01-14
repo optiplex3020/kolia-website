@@ -15,17 +15,18 @@ export default function Card({
   className,
   ...props
 }: CardProps) {
-  const baseStyles = "rounded-[var(--radius-xl)] transition-all duration-[var(--transition-base)]";
+  const baseStyles =
+    "rounded-[var(--radius-xl)] transition-colors duration-[var(--transition-base)]";
 
   const variants = {
     default:
-      "bg-[var(--color-surface-elevated)] border border-[var(--color-separator)]",
+      "bg-[var(--color-surface)] border border-[var(--color-separator)]",
     glass:
-      "glass-card",
+      "bg-[var(--color-surface)] border border-[var(--color-separator)]",
     elevated:
-      "bg-[var(--color-surface-elevated)] shadow-[var(--shadow-lg)] hover:shadow-[var(--shadow-xl)]",
+      "bg-[var(--color-surface-elevated)] shadow-[var(--shadow-sm)]",
     bordered:
-      "bg-transparent border-2 border-[var(--color-text-primary)]",
+      "bg-transparent border border-[var(--color-text-primary)]",
   };
 
   const paddings = {
@@ -74,7 +75,7 @@ export function CardTitle({
   return (
     <Component
       className={cn(
-        "font-[family-name:var(--font-display)] text-[var(--font-size-2xl)] font-semibold leading-[var(--leading-tight)] tracking-[var(--tracking-tight)] text-[var(--color-text-primary)] mb-2",
+        "font-[family-name:var(--font-display)] text-[var(--font-size-2xl)] font-normal leading-[var(--leading-tight)] tracking-[var(--tracking-wide)] text-[var(--color-text-primary)] mb-2",
         className
       )}
       {...props}

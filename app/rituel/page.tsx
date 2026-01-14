@@ -1,19 +1,46 @@
 const elements = [
   {
     label: "Goût",
-    detail: "Grains de fonio fumé, huile de baobab, poudre de café Touba.",
+    detail: "Ingrédient rare, préparation courte, geste lent.",
   },
   {
     label: "Odeur",
-    detail: "Encens de bois de santal, sachet de poivre Selim.",
+    detail: "Bois de santal, épice brute, odeur révélée à l'ouverture.",
   },
   {
     label: "Poème",
-    detail: "Fragment manuscrit de Fatou Kandé Senghor. Papier ivoire brut.",
+    detail: "Fragment imprimé sur papier texturé, typographie soignée.",
   },
   {
     label: "Son",
-    detail: "Plan fixe · 02:14 · Dakar nuit. QR code discret.",
+    detail: "Plan fixe · 02:14 · QR code discret, une seule diffusion.",
+  },
+  {
+    label: "Matière",
+    detail: "Objet à garder : cuillère rituelle en céramique mate.",
+  },
+];
+
+const sequence = [
+  {
+    label: "Réception",
+    detail: "Poids, format, silence. Rien ne s'annonce.",
+  },
+  {
+    label: "Ouverture",
+    detail: "Rabat lent, révélation progressive, odeur immédiate.",
+  },
+  {
+    label: "Découverte",
+    detail: "Goût, odeur, texte et son se répondent.",
+  },
+  {
+    label: "Consommation",
+    detail: "Rituel personnel, sans vitesse, sans répétition.",
+  },
+  {
+    label: "Conservation",
+    detail: "L'objet reste. La mémoire s'ancre.",
   },
 ];
 
@@ -25,22 +52,22 @@ const timings = [
 
 export default function RitualPage() {
   return (
-    <section className="mx-auto flex min-h-[calc(100vh-80px)] max-w-4xl flex-col gap-12 px-6 py-24">
+    <section className="mx-auto flex min-h-[calc(100vh-80px)] max-w-5xl flex-col gap-12 px-6 py-24">
       <p className="text-xs uppercase tracking-[0.6em] text-[var(--color-text-muted)]">Rituel en cours</p>
 
-      <div className="space-y-2">
-        <h1 className="text-[clamp(2.4rem,6vw,3.8rem)] font-[family-name:var(--font-display)] leading-[var(--leading-tight)]">
-          Dakar souterrain.
+      <div className="space-y-3">
+        <h1 className="text-[clamp(2.4rem,6vw,3.8rem)] font-[family-name:var(--font-display)] uppercase tracking-[var(--tracking-ritual)]">
+          Dakar souterrain
         </h1>
-        <p className="text-sm uppercase tracking-[0.4em] text-[var(--color-text-secondary)]">
+        <p className="text-sm uppercase tracking-[0.45em] text-[var(--color-text-secondary)]">
           Édition 08 · Novembre
         </p>
       </div>
 
       <article className="space-y-6">
         <p className="text-base leading-[var(--leading-relaxed)] text-[var(--color-text-secondary)]">
-          Une boîte sombre, velours intérieur. Les matières sont numérotées. La dégustation commence par le silence,
-          se poursuit par un geste lent. Rien n’est répété.
+          Une boîte sombre, un intérieur ivoire, des matières numérotées. Le rituel commence par le
+          silence, puis par un geste précis. Tout est limité, rien n&apos;est répété.
         </p>
         <div className="grid gap-6 sm:grid-cols-2">
           {elements.map((item) => (
@@ -52,7 +79,18 @@ export default function RitualPage() {
         </div>
       </article>
 
-      <div className="grid gap-4 border-y border-[var(--color-separator)] py-6 text-xs uppercase tracking-[0.45em] text-[var(--color-text-secondary)] sm:grid-cols-3">
+      <div className="grid gap-6 border-y border-[var(--color-separator)] py-8 sm:grid-cols-2 lg:grid-cols-3">
+        {sequence.map((step) => (
+          <div key={step.label}>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
+              {step.label}
+            </p>
+            <p className="mt-3 text-sm text-[var(--color-text-secondary)]">{step.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-4 text-xs uppercase tracking-[0.45em] text-[var(--color-text-secondary)] sm:grid-cols-3">
         {timings.map((item) => (
           <div key={item.label}>
             <p className="text-[var(--color-text-muted)]">{item.label}</p>
@@ -64,7 +102,7 @@ export default function RitualPage() {
       </div>
 
       <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
-        Aucune nouvelle invitation n’est émise pendant la fenêtre.
+        Aucune invitation n&apos;est émise pendant la fenêtre.
       </p>
     </section>
   );

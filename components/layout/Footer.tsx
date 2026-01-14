@@ -16,14 +16,14 @@ export default function Footer() {
     <footer className="border-t border-[var(--color-separator)] bg-[var(--color-background)]">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 sm:flex-row sm:items-end sm:justify-between">
         <div className="space-y-3">
-          <p className="text-xs uppercase tracking-[0.45em] text-[var(--color-text-muted)]">
-            Kolia
+          <p className="text-xs uppercase tracking-[0.6em] text-[var(--color-text-muted)]">
+            K O L I A
           </p>
           <p className="text-base text-[var(--color-text-secondary)]">
-            Maison sensorielle. Objets rituels en quantité limitée.
+            Maison sensorielle du goût. Objets rituels mensuels, accès par invitation.
           </p>
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
-            © {currentYear} · Silence conservé.
+            © {currentYear} · Paris · Silence conservé.
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export default function Footer() {
             <div key={link.href}>
               <Link
                 href={link.href}
-                className="transition-colors duration-[var(--transition-fast)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
+                className="transition-colors duration-[var(--transition-base)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-rouge-brique)]"
               >
                 {link.label}
               </Link>

@@ -79,43 +79,50 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className="flex h-10 min-w-[88px] items-center justify-center rounded-full border border-[var(--color-separator)] bg-[var(--color-background)] px-4 text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-primary)] lg:hidden"
+            className="flex h-10 min-w-[88px] items-center justify-center rounded-full border border-[var(--color-separator)] bg-[var(--color-background)] px-4 text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-primary)] transition-colors duration-[var(--transition-instant)] hover:border-[var(--color-text-primary)] lg:hidden"
             aria-expanded={isMobileMenuOpen}
             aria-label="Menu"
           >
-            Menu
+            {isMobileMenuOpen ? "Fermer" : "Menu"}
           </button>
         </nav>
       </header>
 
       <aside
         className={cn(
-          "fixed inset-0 z-[2000] bg-[color:var(--color-overlay)] backdrop-blur-[2px] transition-opacity duration-[var(--transition-fast)] lg:hidden",
+          "fixed inset-0 z-[2000] bg-[color:var(--color-overlay)] backdrop-blur-[2px] transition-opacity duration-300 lg:hidden",
           isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         )}
         aria-hidden={!isMobileMenuOpen}
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className="absolute left-1/2 top-24 max-h-[calc(100dvh-7rem)] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 overflow-y-auto rounded-[var(--radius-xl)] border border-[var(--color-separator)] bg-[var(--color-background)] p-8 shadow-soft"
+          className={cn(
+            "absolute left-1/2 top-24 max-h-[calc(100dvh-7rem)] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 overflow-y-auto rounded-[var(--radius-xl)] border border-[var(--color-separator)] bg-[var(--color-background)] p-8 shadow-soft transition-all duration-500 ease-out",
+            isMobileMenuOpen
+              ? "translate-y-0 scale-100 opacity-100"
+              : "-translate-y-8 scale-95 opacity-0"
+          )}
           onClick={(event) => event.stopPropagation()}
         >
           <p className="mb-6 text-xs uppercase tracking-[0.5em] text-[var(--color-text-muted)]">
             Vestibule
           </p>
           <nav className="space-y-4">
-            {NAV_LINKS.map((link) => {
+            {NAV_LINKS.map((link, index) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "block text-lg uppercase tracking-[0.4em]",
+                    "block text-lg uppercase tracking-[0.4em] transition-all duration-500 ease-out",
+                    isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
                     isActive
                       ? "text-[var(--color-text-primary)]"
                       : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                   )}
+                  style={{ transitionDelay: `${80 + index * 55}ms` }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

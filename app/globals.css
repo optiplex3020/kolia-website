@@ -114,6 +114,7 @@ html {
 
 body {
   position: relative;
+  isolation: isolate;
   background-color: var(--color-background);
   color: var(--color-text-primary);
   font-family: var(--font-sans, system-ui), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -138,12 +139,7 @@ body::before {
   background-size: 320px 320px;
   opacity: 0.12;
   pointer-events: none;
-  z-index: 0;
-}
-
-body > * {
-  position: relative;
-  z-index: 1;
+  z-index: -1;
 }
 
 /* === Typography === */

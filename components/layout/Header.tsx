@@ -30,6 +30,13 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <header
@@ -72,7 +79,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-separator)] text-[10px] uppercase tracking-[0.4em] lg:hidden"
+            className="flex h-10 min-w-[88px] items-center justify-center rounded-full border border-[var(--color-separator)] bg-[var(--color-background)] px-4 text-[10px] uppercase tracking-[0.4em] text-[var(--color-text-primary)] lg:hidden"
             aria-expanded={isMobileMenuOpen}
             aria-label="Menu"
           >
@@ -83,14 +90,14 @@ export default function Header() {
 
       <aside
         className={cn(
-          "fixed inset-0 z-[var(--z-modal)] bg-[var(--color-overlay)] transition-opacity duration-[var(--transition-fast)] lg:hidden",
+          "fixed inset-0 z-[2000] bg-[color:var(--color-overlay)] backdrop-blur-[2px] transition-opacity duration-[var(--transition-fast)] lg:hidden",
           isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         )}
         aria-hidden={!isMobileMenuOpen}
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className="absolute inset-x-4 top-24 rounded-[var(--radius-xl)] border border-[var(--color-separator)] bg-[var(--color-background)] p-8"
+          className="absolute left-1/2 top-24 max-h-[calc(100dvh-7rem)] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 overflow-y-auto rounded-[var(--radius-xl)] border border-[var(--color-separator)] bg-[var(--color-background)] p-8 shadow-soft"
           onClick={(event) => event.stopPropagation()}
         >
           <p className="mb-6 text-xs uppercase tracking-[0.5em] text-[var(--color-text-muted)]">

@@ -187,9 +187,12 @@ button:focus-visible {
 
 button {
   cursor: pointer;
+  font-family: inherit;
+}
+
+button:not([class]) {
   border: none;
   background: none;
-  font-family: inherit;
 }
 
 button:disabled {
